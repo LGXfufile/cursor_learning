@@ -7,7 +7,9 @@
     <el-card class="feature-card" v-for="feature in features" :key="feature.title">
       <template #header>
         <div class="card-header">
-          <el-icon><component :is="feature.icon" /></el-icon>
+          <el-icon>
+            <component :is="feature.icon" />
+          </el-icon>
           <span>{{ feature.title }}</span>
         </div>
       </template>
@@ -19,21 +21,21 @@
 </template>
 
 <script setup>
-import { Cpu, Magic, Key } from '@element-plus/icons-vue'
+import { Monitor, Edit, Setting } from '@element-plus/icons-vue'
 
 const features = [
   {
-    icon: 'Cpu',
+    icon: Monitor,
     title: 'AI 驱动',
     description: '使用先进的 AI 模型提供智能代码补全和建议'
   },
   {
-    icon: 'Magic',
+    icon: Edit,
     title: '智能重构',
     description: '自动识别代码模式并提供优化建议'
   },
   {
-    icon: 'Key',
+    icon: Setting,
     title: '简单易用',
     description: '直观的界面设计，快速上手，提升开发效率'
   }
