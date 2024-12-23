@@ -67,22 +67,22 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Check, Close } from '@element-plus/icons-vue'
+import { Check, Close, Location, Document, Connection } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 
 const features = ref([
   {
-    icon: 'Compass',
+    icon: Location,
     title: '循序渐进',
     description: '从基础概念开始，逐步深入 Cursor 的高级特性'
   },
   {
-    icon: 'Document',
+    icon: Document,
     title: '实战项目',
     description: '通过真实项目练习，掌握 Cursor 实际应用'
   },
   {
-    icon: 'Connection',
+    icon: Connection,
     title: 'AI 集成',
     description: '深入理解 AI 辅助编程的核心概念和最佳实践'
   }
