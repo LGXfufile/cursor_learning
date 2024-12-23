@@ -68,6 +68,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Check, Close } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 
 const features = ref([
   {
@@ -114,8 +115,10 @@ const faqs = ref([
   }
 ])
 
+const router = useRouter()
+
 const startLearning = () => {
-  // 实现开始学习的逻辑
+  router.push('/learn')
 }
 </script>
 
