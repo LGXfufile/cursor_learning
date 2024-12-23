@@ -22,19 +22,30 @@
             <el-icon><Tools /></el-icon>
             <span>核心功能</span>
           </template>
-          <el-menu-item index="2-1">AI 代码补全</el-menu-item>
-          <el-menu-item index="2-2">代码优化</el-menu-item>
-          <el-menu-item index="2-3">智能重构</el-menu-item>
+          <el-menu-item index="2-1">Tab 自动补全</el-menu-item>
+          <el-menu-item index="2-2">Chat 智能对话</el-menu-item>
+          <el-menu-item index="2-3">Cmd K 快捷编辑</el-menu-item>
+          <el-menu-item index="2-4">Composer 项目开发</el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="3">
           <template #title>
             <el-icon><Connection /></el-icon>
+            <span>实战项目</span>
+          </template>
+          <el-menu-item index="3-1">Chrome 插件开发</el-menu-item>
+          <el-menu-item index="3-2">网页应用开发</el-menu-item>
+          <el-menu-item index="3-3">Python 游戏开发</el-menu-item>
+        </el-sub-menu>
+
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon><Setting /></el-icon>
             <span>高级特性</span>
           </template>
-          <el-menu-item index="3-1">自定义提示</el-menu-item>
-          <el-menu-item index="3-2">项目分析</el-menu-item>
-          <el-menu-item index="3-3">最佳实践</el-menu-item>
+          <el-menu-item index="4-1">自定义提示词</el-menu-item>
+          <el-menu-item index="4-2">知识库集成</el-menu-item>
+          <el-menu-item index="4-3">多模型配置</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>
@@ -53,10 +64,11 @@
 
 <script setup>
 import { ref, shallowRef } from 'vue'
-import { Document, Tools, Connection } from '@element-plus/icons-vue'
+import { Document, Tools, Connection, Setting } from '@element-plus/icons-vue'
 import BasicIntro from '../components/learn/BasicIntro.vue'
 import Installation from '../components/learn/Installation.vue'
 import BasicUsage from '../components/learn/BasicUsage.vue'
+import TabCompletion from '../components/learn/TabCompletion.vue'
 
 const currentTitle = ref('Cursor 简介')
 const currentComponent = shallowRef(BasicIntro)
@@ -65,6 +77,8 @@ const contentMap = {
   '1-1': { title: 'Cursor 简介', component: BasicIntro },
   '1-2': { title: '安装配置', component: Installation },
   '1-3': { title: '基本使用', component: BasicUsage },
+  '2-1': { title: 'Tab 自动补全', component: TabCompletion },
+  // 其他内容组件待添加
 }
 
 const handleSelect = (index) => {
