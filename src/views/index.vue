@@ -62,12 +62,33 @@
         </el-collapse-item>
       </el-collapse>
     </div>
+
+    <!-- 添加页脚部分 -->
+    <footer class="footer-section">
+      <div class="footer-content">
+        <div class="contact-info">
+          <h3>联系方式</h3>
+          <p>
+            <el-icon><Message /></el-icon>
+            邮箱：<a href="mailto:401040990@qq.com">401040990@qq.com</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="/about">关于我们</a>
+          <a href="/privacy">隐私政策</a>
+        </div>
+        <div class="copyright">
+          © {{ new Date().getFullYear() }} Cursor Learning. All rights reserved.
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Check, Close, Location, Document, Connection } from '@element-plus/icons-vue'
+import { Check, Close, Location, Document, Connection, Message } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 
 const features = ref([
@@ -127,6 +148,9 @@ const startLearning = () => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  min-height: calc(100vh - 80px); /* 减去页脚高度 */
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-section {
@@ -231,5 +255,77 @@ const startLearning = () => {
   .subtitle {
     font-size: 18px;
   }
+}
+
+/* 添加页脚样式 */
+.footer-section {
+  margin-top: 60px;
+  padding: 40px 0;
+  background-color: #f5f7fa;
+  border-top: 1px solid #e6e6e6;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.contact-info h3 {
+  margin-bottom: 10px;
+  color: #303133;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #606266;
+}
+
+.contact-info a {
+  color: #409EFF;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #606266;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #409EFF;
+}
+
+.copyright {
+  color: #909399;
+  font-size: 14px;
+}
+
+/* 确保页脚始终在底部 */
+.landing-page {
+  min-height: calc(100vh - 80px); /* 减去页脚高度 */
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section {
+  margin-top: auto;
 }
 </style> 
