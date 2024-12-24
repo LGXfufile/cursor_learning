@@ -65,6 +65,15 @@ const addTodo = (text) => {
     completed: false
   })
 }
+
+const toggleTodo = (id) => {
+  const todo = todos.value.find(t => t.id === id)
+  if (todo) todo.completed = !todo.completed
+}
+
+const deleteTodo = (id) => {
+  todos.value = todos.value.filter(t => t.id !== id)
+}
 &lt;/script&gt;</code></pre>
           </div>
         </el-tab-pane>
@@ -73,25 +82,48 @@ const addTodo = (text) => {
           <div class="code-block">
             <pre><code>&lt;template&gt;
   &lt;div class="todo-item"
-       :class="{ completed: todo.completed }"&gt;
+       :class="{ completed: props.todo.completed }"&gt;
     &lt;el-checkbox
-      v-model="todo.completed"
-      @change="$emit('toggle', todo.id)"&gt;
-      {{ todo.text }}
+      v-model="props.todo.completed"
+      @change="$emit('toggle', props.todo.id)"&gt;
+      {{ props.todo.text }}
     &lt;/el-checkbox&gt;
     &lt;el-button
       type="danger"
       size="small"
-      @click="$emit('delete', todo.id)"&gt;
+      @click="$emit('delete', props.todo.id)"&gt;
       删除
     &lt;/el-button&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script setup&gt;
-defineProps(['todo'])
+const props = defineProps({
+  todo: {
+    type: Object,
+    required: true
+  }
+})
+
 defineEmits(['toggle', 'delete'])
-&lt;/script&gt;</code></pre>
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+&lt;/style&gt;</code></pre>
           </div>
         </el-tab-pane>
       </el-tabs>
