@@ -82,16 +82,16 @@ const deleteTodo = (id) => {
           <div class="code-block">
             <pre><code>&lt;template&gt;
   &lt;div class="todo-item"
-       :class="{ completed: props.todo.completed }"&gt;
+       :class="{ completed: todo.completed }"&gt;
     &lt;el-checkbox
-      v-model="props.todo.completed"
-      @change="$emit('toggle', props.todo.id)"&gt;
-      {{ props.todo.text }}
+      v-model="todo.completed"
+      @change="$emit('toggle', todo.id)"&gt;
+      {{ todo.text }}
     &lt;/el-checkbox&gt;
     &lt;el-button
       type="danger"
       size="small"
-      @click="$emit('delete', props.todo.id)"&gt;
+      @click="$emit('delete', todo.id)"&gt;
       删除
     &lt;/el-button&gt;
   &lt;/div&gt;
