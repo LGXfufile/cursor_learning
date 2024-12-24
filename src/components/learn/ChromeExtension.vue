@@ -94,23 +94,63 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       <h4>效果演示</h4>
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-card class="demo-card">
+          <el-card class="demo-card" shadow="hover">
             <template #header>
               <div class="card-header">
-                <span>选中文本</span>
+                <el-icon><Select /></el-icon>
+                <span>选中文本翻译</span>
               </div>
             </template>
-            <img src="https://cdn.jsdelivr.net/gh/microsoft/vscode-docs@main/docs/editor/images/selection/selection.gif" alt="选中文本演示">
+            <div class="demo-placeholder">
+              <el-image 
+                src="https://storage.googleapis.com/chrome-gcs-uploader.google.com/image/WlD8wC6g8P8IaQK1gJHBcBM9CO72/UV4C9qBjvtjvZa5GbU4E.png"
+                fit="contain"
+                class="demo-image"
+              >
+                <template #placeholder>
+                  <div class="image-loading">
+                    <el-icon class="is-loading"><Loading /></el-icon>
+                    <p>加载中...</p>
+                  </div>
+                </template>
+                <template #error>
+                  <div class="image-placeholder">
+                    <el-icon><Picture /></el-icon>
+                    <p>选中文本后，点击扩展图标进行翻译</p>
+                  </div>
+                </template>
+              </el-image>
+            </div>
           </el-card>
         </el-col>
         <el-col :span="12">
-          <el-card class="demo-card">
+          <el-card class="demo-card" shadow="hover">
             <template #header>
               <div class="card-header">
-                <span>翻译结果</span>
+                <el-icon><Document /></el-icon>
+                <span>翻译结果展示</span>
               </div>
             </template>
-            <img src="https://cdn.jsdelivr.net/gh/microsoft/vscode-docs@main/docs/editor/images/tooltip/tooltip.gif" alt="翻译结果演示">
+            <div class="demo-placeholder">
+              <el-image 
+                src="https://storage.googleapis.com/chrome-gcs-uploader.google.com/image/WlD8wC6g8P8IaQK1gJHBcBM9CO72/qd7KqhZxK3U0OeEhS93H.png"
+                fit="contain"
+                class="demo-image"
+              >
+                <template #placeholder>
+                  <div class="image-loading">
+                    <el-icon class="is-loading"><Loading /></el-icon>
+                    <p>加载中...</p>
+                  </div>
+                </template>
+                <template #error>
+                  <div class="image-placeholder">
+                    <el-icon><Picture /></el-icon>
+                    <p>翻译结果将在弹窗中显示</p>
+                  </div>
+                </template>
+              </el-image>
+            </div>
           </el-card>
         </el-col>
       </el-row>
@@ -134,7 +174,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 </template>
 
 <script setup>
-import { ChromeFilled } from '@element-plus/icons-vue'
+import { ChromeFilled, Picture, Select, Document, Loading } from '@element-plus/icons-vue'
 
 const tips = [
   {
@@ -196,17 +236,68 @@ h4 {
 }
 
 .demo-card {
-  margin-bottom: 20px;
+  height: 100%;
+  transition: all 0.3s ease;
 }
 
-.demo-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.demo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.demo-placeholder {
+  background: #f5f7fa;
+  border-radius: 8px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image-placeholder, .image-loading {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #909399;
+  gap: 12px;
+}
+
+.image-loading .el-icon {
+  font-size: 24px;
+  animation: rotating 2s linear infinite;
+}
+
+.demo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.demo-image:hover {
+  transform: scale(1.02);
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.el-image {
+  width: 100%;
+  height: 100%;
 }
 
 ul {

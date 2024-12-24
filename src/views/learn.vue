@@ -15,7 +15,7 @@
       </div>
 
       <el-menu
-        default-active="1-1"
+        :default-active="activeIndex"
         class="menu"
         @select="handleSelect"
       >
@@ -75,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref, shallowRef } from 'vue'
+import { ref, shallowRef, markRaw } from 'vue'
 import { Document, Tools, Connection, Setting, ArrowLeft } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import BasicIntro from '../components/learn/BasicIntro.vue'
@@ -83,26 +83,37 @@ import Installation from '../components/learn/Installation.vue'
 import BasicUsage from '../components/learn/BasicUsage.vue'
 import TabCompletion from '../components/learn/TabCompletion.vue'
 import ChromeExtension from '../components/learn/ChromeExtension.vue'
+import WebAppDev from '../components/learn/WebAppDev.vue'
 
 const router = useRouter()
 const goHome = () => router.push('/')
 
+const activeIndex = ref('1-1')
 const currentTitle = ref('Cursor 简介')
-const currentComponent = shallowRef(BasicIntro)
+const currentComponent = shallowRef(markRaw(BasicIntro))
 
 const contentMap = {
-  '1-1': { title: 'Cursor 简介', component: BasicIntro },
-  '1-2': { title: '安装配置', component: Installation },
-  '1-3': { title: '基本使用', component: BasicUsage },
-  '2-1': { title: 'Tab 自动补全', component: TabCompletion },
-  '3-1': { title: 'Chrome 插件开发', component: ChromeExtension },
-  // 其他内容组件待添加
+  '1-1': { title: 'Cursor 简介', component: markRaw(BasicIntro) },
+  '1-2': { title: '安装配置', component: markRaw(Installation) },
+  '1-3': { title: '基本使用', component: markRaw(BasicUsage) },
+  '2-1': { title: 'Tab 自动补全', component: markRaw(TabCompletion) },
+  '2-2': { title: 'Chat 智能对话', component: markRaw(BasicIntro) },
+  '2-3': { title: 'Cmd K 快捷编辑', component: markRaw(BasicIntro) },
+  '2-4': { title: 'Composer 项目开发', component: markRaw(BasicIntro) },
+  '3-1': { title: 'Chrome 插件开发', component: markRaw(ChromeExtension) },
+  '3-2': { title: '网页应用开发', component: markRaw(WebAppDev) },
+  '3-3': { title: 'Python 游戏开发', component: markRaw(BasicIntro) }
 }
 
 const handleSelect = (index) => {
   if (contentMap[index]) {
-    currentTitle.value = contentMap[index].title
-    currentComponent.value = contentMap[index].component
+    try {
+      activeIndex.value = index
+      currentTitle.value = contentMap[index].title
+      currentComponent.value = contentMap[index].component
+    } catch (error) {
+      console.error('Error loading component:', error)
+    }
   }
 }
 </script>
