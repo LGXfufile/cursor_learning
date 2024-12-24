@@ -74,7 +74,7 @@
           </p>
         </div>
         <div class="footer-links">
-          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="https://github.com/LGXfufile/cursor_learning" target="_blank">GitHub</a>
           <a href="/about">关于我们</a>
           <a href="/privacy">隐私政策</a>
         </div>

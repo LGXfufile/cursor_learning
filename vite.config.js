@@ -1,15 +1,22 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// 根据环境变量设置基础路径
-const base = process.env.NODE_ENV === 'production' ? '/cursor_learning/' : '/'
-
 export default defineConfig({
   plugins: [vue()],
-  base: base,  // 设置基础路径
+  base: process.env.NODE_ENV === 'production' ? '/cursor_learning/' : '/',
   server: {
     open: true,
     port: 5173,
     host: true
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    // 确保生成正确的资源引用路径
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
   }
 })
