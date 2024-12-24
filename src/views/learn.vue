@@ -2,6 +2,18 @@
   <div class="learn-container">
     <!-- 左侧目录 -->
     <div class="sidebar">
+      <div class="back-home">
+        <el-button 
+          type="primary" 
+          link 
+          @click="goHome"
+          class="back-button"
+        >
+          <el-icon><ArrowLeft /></el-icon>
+          返回主页
+        </el-button>
+      </div>
+
       <el-menu
         default-active="1-1"
         class="menu"
@@ -64,11 +76,16 @@
 
 <script setup>
 import { ref, shallowRef } from 'vue'
-import { Document, Tools, Connection, Setting } from '@element-plus/icons-vue'
+import { Document, Tools, Connection, Setting, ArrowLeft } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 import BasicIntro from '../components/learn/BasicIntro.vue'
 import Installation from '../components/learn/Installation.vue'
 import BasicUsage from '../components/learn/BasicUsage.vue'
 import TabCompletion from '../components/learn/TabCompletion.vue'
+import ChromeExtension from '../components/learn/ChromeExtension.vue'
+
+const router = useRouter()
+const goHome = () => router.push('/')
 
 const currentTitle = ref('Cursor 简介')
 const currentComponent = shallowRef(BasicIntro)
@@ -78,6 +95,7 @@ const contentMap = {
   '1-2': { title: '安装配置', component: Installation },
   '1-3': { title: '基本使用', component: BasicUsage },
   '2-1': { title: 'Tab 自动补全', component: TabCompletion },
+  '3-1': { title: 'Chrome 插件开发', component: ChromeExtension },
   // 其他内容组件待添加
 }
 
@@ -94,6 +112,24 @@ const handleSelect = (index) => {
   display: flex;
   height: 100vh;
   background-color: #f5f7fa;
+}
+
+.back-home {
+  padding: 16px;
+  border-bottom: 1px solid #e6e6e6;
+  background: linear-gradient(to right, #f0f2f5, #ffffff);
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  transform: translateX(-5px);
 }
 
 .sidebar {
