@@ -48,7 +48,7 @@
     "service_worker": "background.js"
   },
   "content_scripts": [{
-    "matches": ["<all_urls>"],
+    "matches": ["&lt;all_urls&gt;"],
     "js": ["content.js"]
   }]
 }</code></pre>
