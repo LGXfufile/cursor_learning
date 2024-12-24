@@ -3,6 +3,9 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  // 本地开发时注释掉 base 配置
-  // base: '/cursor_learning/'
+  server: {
+    open: '/', // 自动打开根路径
+    port: 5173,
+    host: true
+  }
 })
