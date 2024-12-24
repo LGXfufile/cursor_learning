@@ -183,13 +183,14 @@ const startLearning = () => {
 }
 
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
   margin-top: 40px;
 }
 
 .feature-card {
+  flex: 1;
   padding: 30px;
   border-radius: 12px;
   background: white;
