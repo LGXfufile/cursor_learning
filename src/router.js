@@ -1,26 +1,22 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Index from './views/index.vue'
 import Learn from './views/learn.vue'
 
-// 根据环境变量设置基础路径
-const base = process.env.NODE_ENV === 'production' ? '/cursor_learning/' : '/'
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Index
-  },
-  {
-    path: '/learn',
-    name: 'Learn',
-    component: Learn
-  }
-]
-
+// 使用 hash 模式而不是 history 模式
 const router = createRouter({
-  history: createWebHistory(base),  // 使用正确的基础路径
-  routes
+  history: createWebHashHistory(),
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Index
+    },
+    {
+      path: '/learn',
+      name: 'Learn',
+      component: Learn
+    }
+  ]
 })
 
 export default router 
