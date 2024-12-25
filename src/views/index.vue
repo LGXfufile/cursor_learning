@@ -10,7 +10,7 @@
         <el-button type="primary" size="large" @click="startLearning">
           开始学习
         </el-button>
-        <el-button size="large">查看文档</el-button>
+        <el-button size="large" @click="showDocDialog">查看文档</el-button>
       </div>
     </div>
 
@@ -108,12 +108,41 @@
         <p class="qrcode-tip">扫描二维码添加微信</p>
       </div>
     </el-dialog>
+
+    <!-- 添加文档弹窗 -->
+    <el-dialog
+      v-model="docDialogVisible"
+      title="文档资源"
+      width="600px"
+    >
+      <div class="doc-links">
+        <el-card v-for="doc in docResources" :key="doc.title" class="doc-card">
+          <div class="doc-header">
+            <el-icon :size="24">
+              <component :is="doc.icon" />
+            </el-icon>
+            <h3>{{ doc.title }}</h3>
+          </div>
+          <p class="doc-desc">{{ doc.description }}</p>
+          <div class="doc-actions">
+            <el-button 
+              type="primary" 
+              :icon="doc.external ? 'Link' : 'Document'"
+              @click="openDoc(doc.url)"
+              :link="doc.external"
+            >
+              {{ doc.external ? '访问链接' : '查看文档' }}
+            </el-button>
+          </div>
+        </el-card>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Check, Close, Location, Document, Connection, Message, Warning } from '@element-plus/icons-vue'
+import { Check, Close, Location, Document, Connection, Message, Warning, Link, Files, Guide } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 
 const features = ref([
@@ -165,8 +194,47 @@ const router = useRouter()
 
 const dialogVisible = ref(false)
 
+const docDialogVisible = ref(false)
+
+const docResources = [
+  {
+    title: '官方文档',
+    description: 'Cursor 官方文档，包含完整的功能说明和使用指南',
+    icon: 'Document',
+    url: 'https://cursor.sh/docs',
+    external: true
+  },
+  {
+    title: '快速入门',
+    description: '通过实例快速了解 Cursor 的基本使用方法',
+    icon: 'Guide',
+    url: '/learn',
+    external: false
+  },
+  {
+    title: 'API 参考',
+    description: '详细的 API 文档和示例代码',
+    icon: 'Files',
+    url: 'https://cursor.sh/api',
+    external: true
+  }
+]
+
 const showContactDialog = () => {
   dialogVisible.value = true
+}
+
+const showDocDialog = () => {
+  docDialogVisible.value = true
+}
+
+const openDoc = (url) => {
+  if (url.startsWith('http')) {
+    window.open(url, '_blank')
+  } else {
+    router.push(url)
+  }
+  docDialogVisible.value = false
 }
 
 const startLearning = () => {
@@ -395,5 +463,52 @@ const startLearning = () => {
 .image-error .el-icon {
   font-size: 32px;
   margin-bottom: 8px;
+}
+
+/* 添加文档相关样式 */
+.doc-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.doc-card {
+  transition: all 0.3s ease;
+}
+
+.doc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.doc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.doc-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #303133;
+}
+
+.doc-desc {
+  color: #606266;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  min-height: 44px;
+}
+
+.doc-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:deep(.el-dialog__body) {
+  padding-top: 20px;
 }
 </style> 
