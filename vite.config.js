@@ -4,10 +4,11 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [vue()],
-  base: './', // 修改为相对路径
+  base: '/cursor_learning/', // 修改为仓库名
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      'vue': 'https://unpkg.com/vue@3/dist/vue.esm-browser.js' // 添加 vue 的 CDN
     }
   },
   build: {
