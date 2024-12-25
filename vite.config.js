@@ -2,19 +2,22 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
+// 根据环境设置不同的基础路径
+const base = process.env.NODE_ENV === 'production' 
+  ? '/cursor_learning/' 
+  : '/'
+
 export default defineConfig({
   plugins: [vue()],
-  base: '/cursor_learning/', // 修改为仓库名
+  base: base, // 开发环境使用 '/'，生产环境使用 '/cursor_learning/'
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      'vue': 'https://unpkg.com/vue@3/dist/vue.esm-browser.js' // 添加 vue 的 CDN
     }
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    // 确保资源正确打包
     rollupOptions: {
       output: {
         chunkFileNames: 'js/[name]-[hash].js',
