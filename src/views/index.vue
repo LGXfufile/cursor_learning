@@ -63,19 +63,19 @@
       </el-collapse>
     </div>
 
-    <!-- 添加页脚部分 -->
+    <!-- 修改页脚部分 -->
     <footer class="footer-section">
       <div class="footer-content">
         <div class="contact-info">
           <h3>联系方式</h3>
           <p>
             <el-icon><Message /></el-icon>
-            邮箱：<a href="mailto:401040990@qq.com">401040990@qq.com</a>
+            <span>邮箱：401040990@qq.com</span>
           </p>
         </div>
         <div class="footer-links">
           <a href="https://github.com/LGXfufile/cursor_learning" target="_blank">GitHub</a>
-          <a href="/about">关于我们</a>
+          <el-button link type="primary" @click="showContactDialog">联系我</el-button>
           <a href="/privacy">隐私政策</a>
         </div>
         <div class="copyright">
@@ -83,12 +83,37 @@
         </div>
       </div>
     </footer>
+
+    <!-- 添加联系方式弹窗 -->
+    <el-dialog
+      v-model="dialogVisible"
+      title="联系我"
+      width="300px"
+      center
+      align-center
+    >
+      <div class="qrcode-container">
+        <el-image
+          :src="'/img/WechatIMG107.jpg'"
+          fit="contain"
+          class="qrcode-image"
+        >
+          <template #error>
+            <div class="image-error">
+              <el-icon><Warning /></el-icon>
+              <p>二维码加载失败</p>
+            </div>
+          </template>
+        </el-image>
+        <p class="qrcode-tip">扫描二维码添加微信</p>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Check, Close, Location, Document, Connection, Message } from '@element-plus/icons-vue'
+import { Check, Close, Location, Document, Connection, Message, Warning } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 
 const features = ref([
@@ -137,6 +162,12 @@ const faqs = ref([
 ])
 
 const router = useRouter()
+
+const dialogVisible = ref(false)
+
+const showContactDialog = () => {
+  dialogVisible.value = true
+}
 
 const startLearning = () => {
   router.push('/learn')
@@ -288,7 +319,7 @@ const startLearning = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #606266;
+  justify-content: center;
 }
 
 .contact-info a {
@@ -328,5 +359,41 @@ const startLearning = () => {
 
 .footer-section {
   margin-top: auto;
+}
+
+/* 添加二维码相关样式 */
+.qrcode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.qrcode-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+}
+
+.qrcode-tip {
+  margin-top: 16px;
+  color: #606266;
+  font-size: 14px;
+}
+
+.image-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background: #f5f7fa;
+  border-radius: 8px;
+  color: #909399;
+}
+
+.image-error .el-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
 }
 </style> 

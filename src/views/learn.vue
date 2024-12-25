@@ -47,7 +47,6 @@
           </template>
           <el-menu-item index="3-1">Chrome 插件开发</el-menu-item>
           <el-menu-item index="3-2">网页应用开发</el-menu-item>
-          <el-menu-item index="3-3">Python 游戏开发</el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="4">
@@ -75,7 +74,7 @@
 </template>
 
 <script setup>
-import { ref, shallowRef, markRaw } from 'vue'
+import { ref, shallowRef, markRaw, onMounted } from 'vue'
 import { Document, Tools, Connection, Setting, ArrowLeft } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import BasicIntro from '../components/learn/BasicIntro.vue'
@@ -102,7 +101,9 @@ const contentMap = {
   '2-4': { title: 'Composer 项目开发', component: markRaw(BasicIntro) },
   '3-1': { title: 'Chrome 插件开发', component: markRaw(ChromeExtension) },
   '3-2': { title: '网页应用开发', component: markRaw(WebAppDev) },
-  '3-3': { title: 'Python 游戏开发', component: markRaw(BasicIntro) }
+  '4-1': { title: '自定义提示词', component: markRaw(BasicIntro) },
+  '4-2': { title: '知识库集成', component: markRaw(BasicIntro) },
+  '4-3': { title: '多模型配置', component: markRaw(BasicIntro) }
 }
 
 const handleSelect = (index) => {
@@ -111,11 +112,35 @@ const handleSelect = (index) => {
       activeIndex.value = index
       currentTitle.value = contentMap[index].title
       currentComponent.value = contentMap[index].component
+      
+      document.querySelector('.content').scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      
+      const contentBody = document.querySelector('.content-body')
+      if (contentBody) {
+        contentBody.style.opacity = '0'
+        setTimeout(() => {
+          contentBody.style.opacity = '1'
+        }, 100)
+      }
     } catch (error) {
       console.error('Error loading component:', error)
+      ElMessage.error('加载组件失败，请重试')
     }
   }
 }
+
+onMounted(() => {
+  const hash = window.location.hash
+  if (hash.includes('learn')) {
+    const section = hash.split('/').pop()
+    if (section && contentMap[section]) {
+      handleSelect(section)
+    }
+  }
+})
 </script>
 
 <style scoped>
@@ -159,6 +184,21 @@ const handleSelect = (index) => {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #909399 #f4f4f5;
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #909399;
+  border-radius: 3px;
 }
 
 .content-header {
@@ -175,11 +215,26 @@ const handleSelect = (index) => {
   border-radius: 8px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
   min-height: calc(100vh - 160px);
+  transition: opacity 0.3s ease;
 }
 
 h2 {
   margin: 0;
   font-size: 24px;
   color: #303133;
+}
+
+:deep(.el-menu-item) {
+  transition: all 0.3s ease;
+}
+
+:deep(.el-menu-item:hover) {
+  background-color: #ecf5ff;
+  padding-left: 25px;
+}
+
+:deep(.el-menu-item.is-active) {
+  background-color: #ecf5ff;
+  border-right: 2px solid #409EFF;
 }
 </style> 
