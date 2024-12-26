@@ -75,7 +75,7 @@
         </div>
         <div class="footer-links">
           <a href="https://github.com/LGXfufile/cursor_learning" target="_blank">GitHub</a>
-          <el-button link type="primary" @click="showContactDialog">联系我</el-button>
+          <el-button link type="primary" @click="showContactDialog">加入学习群</el-button>
           <a href="/privacy">隐私政策</a>
         </div>
         <div class="copyright">
@@ -87,7 +87,7 @@
     <!-- 添加联系方式弹窗 -->
     <el-dialog
       v-model="dialogVisible"
-      title="联系我"
+      title="加入学习群"
       width="300px"
       center
       align-center
@@ -105,7 +105,7 @@
             </div>
           </template>
         </el-image>
-        <p class="qrcode-tip">扫描二维码添加微信</p>
+        <p class="qrcode-tip">扫描二维码加入学习群</p>
       </div>
     </el-dialog>
 
