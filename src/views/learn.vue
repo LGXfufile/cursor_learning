@@ -48,16 +48,6 @@
           <el-menu-item index="3-1">Chrome 插件开发</el-menu-item>
           <el-menu-item index="3-2">网页应用开发</el-menu-item>
         </el-sub-menu>
-
-        <el-sub-menu index="4">
-          <template #title>
-            <el-icon><Setting /></el-icon>
-            <span>高级特性</span>
-          </template>
-          <el-menu-item index="4-1">自定义提示词</el-menu-item>
-          <el-menu-item index="4-2">知识库集成</el-menu-item>
-          <el-menu-item index="4-3">多模型配置</el-menu-item>
-        </el-sub-menu>
       </el-menu>
     </div>
 
@@ -75,7 +65,7 @@
 
 <script setup>
 import { ref, shallowRef, markRaw, onMounted } from 'vue'
-import { Document, Tools, Connection, Setting, ArrowLeft } from '@element-plus/icons-vue'
+import { Document, Tools, Connection, ArrowLeft } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import BasicIntro from '../components/learn/BasicIntro.vue'
 import Installation from '../components/learn/Installation.vue'
@@ -100,10 +90,7 @@ const contentMap = {
   '2-3': { title: 'Cmd K 快捷编辑', component: markRaw(BasicIntro) },
   '2-4': { title: 'Composer 项目开发', component: markRaw(BasicIntro) },
   '3-1': { title: 'Chrome 插件开发', component: markRaw(ChromeExtension) },
-  '3-2': { title: '网页应用开发', component: markRaw(WebAppDev) },
-  '4-1': { title: '自定义提示词', component: markRaw(BasicIntro) },
-  '4-2': { title: '知识库集成', component: markRaw(BasicIntro) },
-  '4-3': { title: '多模型配置', component: markRaw(BasicIntro) }
+  '3-2': { title: '网页应用开发', component: markRaw(WebAppDev) }
 }
 
 const handleSelect = (index) => {
