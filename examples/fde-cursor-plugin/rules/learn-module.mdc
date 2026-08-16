@@ -1,0 +1,16 @@
+---
+description: 新增或改学习课时时的文件清单
+globs:
+  - src/components/learn/**
+  - src/views/learn.vue
+  - src/data/**
+---
+
+# 加课清单
+
+新增一节课时时一次改齐：
+
+1. `src/components/learn/<Name>.vue`
+2. `src/views/learn.vue`：import、`contentMap`、侧栏 `el-menu-item`
+3. 若有可复用清单，放 `src/data/`，不要把长列表写死在组件里
+4. 课时标题用中文，和侧栏文案一致

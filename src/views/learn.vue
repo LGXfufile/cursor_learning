@@ -48,6 +48,14 @@
           <el-menu-item index="3-1">Chrome 插件开发</el-menu-item>
           <el-menu-item index="3-2">网页应用开发</el-menu-item>
         </el-sub-menu>
+
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon><Opportunity /></el-icon>
+            <span>提效实践</span>
+          </template>
+          <el-menu-item index="4-1">Cursor 插件提效</el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </div>
 
@@ -65,16 +73,18 @@
 
 <script setup>
 import { ref, shallowRef, markRaw, onMounted } from 'vue'
-import { Document, Tools, Connection, ArrowLeft } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { Document, Tools, Connection, ArrowLeft, Opportunity } from '@element-plus/icons-vue'
+import { useRoute, useRouter } from 'vue-router'
 import BasicIntro from '../components/learn/BasicIntro.vue'
 import Installation from '../components/learn/Installation.vue'
 import BasicUsage from '../components/learn/BasicUsage.vue'
 import TabCompletion from '../components/learn/TabCompletion.vue'
 import ChromeExtension from '../components/learn/ChromeExtension.vue'
 import WebAppDev from '../components/learn/WebAppDev.vue'
+import CursorPlugins from '../components/learn/CursorPlugins.vue'
 
 const router = useRouter()
+const route = useRoute()
 const goHome = () => router.push('/')
 
 const activeIndex = ref('1-1')
@@ -90,7 +100,8 @@ const contentMap = {
   '2-3': { title: 'Cmd K 快捷编辑', component: markRaw(BasicIntro) },
   '2-4': { title: 'Composer 项目开发', component: markRaw(BasicIntro) },
   '3-1': { title: 'Chrome 插件开发', component: markRaw(ChromeExtension) },
-  '3-2': { title: '网页应用开发', component: markRaw(WebAppDev) }
+  '3-2': { title: '网页应用开发', component: markRaw(WebAppDev) },
+  '4-1': { title: 'Cursor 插件提效', component: markRaw(CursorPlugins) }
 }
 
 const handleSelect = (index) => {
@@ -99,6 +110,9 @@ const handleSelect = (index) => {
       activeIndex.value = index
       currentTitle.value = contentMap[index].title
       currentComponent.value = contentMap[index].component
+      if (route.query.section !== index) {
+        router.replace({ path: '/learn', query: { section: index } })
+      }
       
       document.querySelector('.content').scrollTo({
         top: 0,
@@ -120,11 +134,17 @@ const handleSelect = (index) => {
 }
 
 onMounted(() => {
+  const section = route.query.section
+  if (typeof section === 'string' && contentMap[section]) {
+    handleSelect(section)
+    return
+  }
+
   const hash = window.location.hash
   if (hash.includes('learn')) {
-    const section = hash.split('/').pop()
-    if (section && contentMap[section]) {
-      handleSelect(section)
+    const fromHash = hash.split('/').pop()
+    if (fromHash && contentMap[fromHash]) {
+      handleSelect(fromHash)
     }
   }
 })

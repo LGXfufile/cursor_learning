@@ -1,0 +1,12 @@
+{
+  "name": "fde-cursor-efficiency",
+  "version": "1.0.0",
+  "description": "FDE 提效插件：Vue 学习站规范、加课技能、课时命令",
+  "author": {
+    "name": "cursor_learning"
+  },
+  "homepage": "https://github.com/LGXfufile/cursor_learning",
+  "repository": "https://github.com/LGXfufile/cursor_learning",
+  "license": "MIT",
+  "keywords": ["fde", "efficiency", "vue", "cursor-learning"]
+}

@@ -1,0 +1,15 @@
+---
+description: cursor_learning 站点约定，改 Vue 课时或路由时生效
+globs:
+  - src/**/*.vue
+  - src/router.js
+  - src/data/**
+---
+
+# 本站约定
+
+- Vue 3 `<script setup>` + 已装的 Element Plus，不加新 UI 库。
+- 课时组件放 `src/components/learn/`，必须在 `src/views/learn.vue` 的侧栏和 `contentMap` 同时注册。
+- 可复用清单放 `src/data/`。
+- 样式 scoped，跟现有卡片、深色代码块一致。
+- 插件示例只改 `examples/fde-cursor-plugin/`，不要把密钥写进仓库。
