@@ -10,6 +10,7 @@
         <el-button type="primary" size="large" @click="startLearning">
           开始学习
         </el-button>
+        <el-button size="large" @click="goOrganize">文件整理分析</el-button>
         <el-button size="large" @click="showDocDialog">查看文档</el-button>
       </div>
     </div>
@@ -239,6 +240,10 @@ const openDoc = (url) => {
 
 const startLearning = () => {
   router.push('/learn')
+}
+
+const goOrganize = () => {
+  router.push('/organize')
 }
 </script>
 
