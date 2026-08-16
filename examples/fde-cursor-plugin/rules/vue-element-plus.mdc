@@ -1,0 +1,13 @@
+---
+description: Vue 3 + Element Plus 约定，写学习站组件时始终生效
+alwaysApply: true
+---
+
+# Vue / Element Plus
+
+- 用 Vue 3 `<script setup>`，不要 Options API。
+- UI 只用已装的 Element Plus 和图标，不要加新 UI 库。
+- 课时组件放 `src/components/learn/`，在 `src/views/learn.vue` 的 `contentMap` 和侧栏同时注册。
+- 样式 scoped，颜色和卡片阴影跟现有课时一致。
+- 代码示例放在深色 `.code-block` 里，模板尖括号要转义。
+- 不要为演示去调需要密钥的外部 API。

@@ -10,6 +10,7 @@
         <el-button type="primary" size="large" @click="startLearning">
           开始学习
         </el-button>
+        <el-button size="large" @click="goPluginLesson">插件提效</el-button>
         <el-button size="large" @click="showDocDialog">查看文档</el-button>
       </div>
     </div>
@@ -201,7 +202,7 @@ const docResources = [
     title: '官方文档',
     description: 'Cursor 官方文档，包含完整的功能说明和使用指南',
     icon: 'Document',
-    url: 'https://cursor.sh/docs',
+    url: 'https://cursor.com/docs',
     external: true
   },
   {
@@ -212,11 +213,11 @@ const docResources = [
     external: false
   },
   {
-    title: 'API 参考',
-    description: '详细的 API 文档和示例代码',
+    title: '插件提效计划',
+    description: 'FDE 课时：Rules / Skills / MCP 怎么装、怎么自己做',
     icon: 'Files',
-    url: 'https://cursor.sh/api',
-    external: true
+    url: '/learn?section=4-1',
+    external: false
   }
 ]
 
@@ -239,6 +240,10 @@ const openDoc = (url) => {
 
 const startLearning = () => {
   router.push('/learn')
+}
+
+const goPluginLesson = () => {
+  router.push({ path: '/learn', query: { section: '4-1' } })
 }
 </script>
 

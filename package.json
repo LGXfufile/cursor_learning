@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:plugin": "node scripts/validate-plugin.mjs",
+    "plugin:install": "node scripts/run-plugin.mjs",
+    "plugin:run": "node scripts/run-plugin.mjs --serve"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
