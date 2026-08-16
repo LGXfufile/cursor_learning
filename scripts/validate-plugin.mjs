@@ -35,6 +35,11 @@ if (existsSync(manifestPath)) {
   }
 }
 
+const runScript = join(root, 'scripts/run-plugin.mjs')
+if (!existsSync(runScript)) {
+  errors.push('missing scripts/run-plugin.mjs')
+}
+
 const catalogPath = join(root, 'src/data/pluginCatalog.js')
 const catalog = readFileSync(catalogPath, 'utf8')
 for (const token of [

@@ -39,4 +39,7 @@ coverage
 .eslintcache
 
 # Vite
-vite.config.*.timestamp-* 
+vite.config.*.timestamp-*
+
+# Generated when the local Cursor plugin is installed
+public/plugin-status.json 

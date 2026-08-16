@@ -1,5 +1,31 @@
 <template>
   <div class="cursor-plugins">
+    <el-card class="status-card" :class="{ running: pluginStatus?.running }">
+      <template #header>
+        <div class="section-header">
+          <el-icon><Opportunity /></el-icon>
+          <span>运行状态</span>
+          <el-tag :type="pluginStatus?.running ? 'success' : 'info'" size="small">
+            {{ pluginStatus?.running ? '已运行' : statusLabel }}
+          </el-tag>
+        </div>
+      </template>
+      <p v-if="pluginStatus?.running">
+        <code>{{ pluginStatus.name }}</code>
+        v{{ pluginStatus.version }} 已装到
+        <code>{{ pluginStatus.localLink }}</code>
+        ，Skills / Commands 已同步进工作区。
+      </p>
+      <ul v-if="pluginStatus?.running" class="status-list">
+        <li v-for="item in statusItems" :key="item">{{ item }}</li>
+      </ul>
+      <p v-else>
+        在仓库根目录执行 <code>npm run plugin:install</code> 会装到
+        <code>~/.cursor/plugins/local</code>，并写出运行状态。
+        要连学习站一起开：<code>npm run plugin:run</code>。
+      </p>
+    </el-card>
+
     <el-card class="intro-section">
       <template #header>
         <div class="section-header">
@@ -128,7 +154,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { Opportunity } from '@element-plus/icons-vue'
 import {
   installSteps,
@@ -138,6 +164,35 @@ import {
   pluginComponents,
   recommendedPlugins
 } from '../../data/pluginCatalog.js'
+
+const pluginStatus = ref(null)
+const statusLabel = ref('未安装')
+
+const statusItems = computed(() => {
+  if (!pluginStatus.value?.workspace) {
+    return []
+  }
+  const workspace = pluginStatus.value.workspace
+  return [
+    ...(workspace.skills || []),
+    ...(workspace.commands || []),
+    ...(workspace.agents || []),
+    ...(workspace.rules || [])
+  ]
+})
+
+onMounted(async () => {
+  try {
+    const response = await fetch('./plugin-status.json', { cache: 'no-store' })
+    if (!response.ok) {
+      statusLabel.value = '未安装'
+      return
+    }
+    pluginStatus.value = await response.json()
+  } catch {
+    statusLabel.value = '未安装'
+  }
+})
 
 const activeCategory = ref('全部')
 const categories = [...new Set(recommendedPlugins.map((item) => item.category))]
@@ -178,8 +233,23 @@ const practiceTips = [
   padding: 20px 0;
 }
 
+.status-card,
 .intro-section {
   margin-bottom: 30px;
+}
+
+.status-card.running {
+  border-color: #67c23a;
+}
+
+.status-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #606266;
+}
+
+.status-list li {
+  margin: 6px 0;
 }
 
 .section-header {

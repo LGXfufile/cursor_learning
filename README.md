@@ -18,6 +18,18 @@
 ln -s "$(pwd)/examples/fde-cursor-plugin" ~/.cursor/plugins/local/fde-cursor-efficiency
 ```
 
+装到本机并同步进工作区：
+
+```bash
+npm run plugin:install
+```
+
+同时打开学习站（课时 `#/learn?section=4-1`）：
+
+```bash
+npm run plugin:run
+```
+
 校验示例插件和推荐清单：
 
 ```bash

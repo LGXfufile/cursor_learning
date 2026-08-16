@@ -139,7 +139,10 @@ export const localPluginTree = `examples/fde-cursor-plugin/
 ├── skills/review-lesson/SKILL.md
 └── README.md`
 
-export const localInstallCommand = `ln -s "$(pwd)/examples/fde-cursor-plugin" ~/.cursor/plugins/local/fde-cursor-efficiency`
+export const localInstallCommand = `npm run plugin:install
+# 装到 ~/.cursor/plugins/local，并同步 Skills / Commands 到 .cursor/
+# 同时打开学习站：
+npm run plugin:run`
 
 export const officialDocs = [
   { title: 'Plugins 总览', url: 'https://cursor.com/docs/plugins' },
