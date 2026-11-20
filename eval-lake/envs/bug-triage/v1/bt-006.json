@@ -1,0 +1,10 @@
+{
+  "case_id": "bt-006",
+  "dataset": "bug-triage@v1",
+  "repro": "每切换一次标签页 JS 堆增长约 2MB，不回落",
+  "fix_file": "src/composables/usePolling.js",
+  "files": {
+    "src/composables/usePolling.js": "export function usePolling(fn, ms) {\n  onMounted(() => setInterval(fn, ms))\n}",
+    "src/views/Tabs.vue": "<script setup>usePolling(refresh, 1000)</script>"
+  }
+}

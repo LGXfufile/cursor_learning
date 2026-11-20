@@ -15,6 +15,11 @@ const router = createRouter({
       path: '/learn',
       name: 'Learn',
       component: Learn
+    },
+    {
+      path: '/eval-lake',
+      name: 'EvalLake',
+      component: () => import('./views/eval-lake.vue')
     }
   ]
 })

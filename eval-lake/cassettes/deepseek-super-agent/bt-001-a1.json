@@ -1,0 +1,259 @@
+{
+  "provenance": "mock",
+  "model": "deepseek-chat",
+  "recorded_at": "2026-11-20T00:00:00Z",
+  "latency_ms": [
+    1400,
+    1797,
+    2194,
+    1691,
+    2088,
+    1585,
+    1982,
+    1479
+  ],
+  "responses": [
+    {
+      "id": "chatcmpl-mock-1",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_1",
+                "type": "function",
+                "function": {
+                  "name": "run_app",
+                  "arguments": "{}"
+                }
+              }
+            ],
+            "reasoning_content": "先复现闪烁"
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 2450,
+        "completion_tokens": 210,
+        "total_tokens": 2660
+      }
+    },
+    {
+      "id": "chatcmpl-mock-2",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_2",
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "arguments": "{\"pattern\":\"theme\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 3100,
+        "completion_tokens": 90,
+        "total_tokens": 3190
+      }
+    },
+    {
+      "id": "chatcmpl-mock-3",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_3",
+                "type": "function",
+                "function": {
+                  "name": "read_file",
+                  "arguments": "{\"path\":\"src/components/Sidebar.vue\"}"
+                }
+              }
+            ],
+            "reasoning_content": "bg 在 nextTick 后才更新，首帧用的是旧主题"
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 3750,
+        "completion_tokens": 210,
+        "total_tokens": 3960
+      }
+    },
+    {
+      "id": "chatcmpl-mock-4",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_4",
+                "type": "function",
+                "function": {
+                  "name": "report_root_cause",
+                  "arguments": "{\"file\":\"src/components/Sidebar.vue\",\"reason\":\"主题变化后延迟一帧才同步背景色\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 4400,
+        "completion_tokens": 90,
+        "total_tokens": 4490
+      }
+    },
+    {
+      "id": "chatcmpl-mock-5",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_5",
+                "type": "function",
+                "function": {
+                  "name": "apply_patch",
+                  "arguments": "{\"path\":\"src/components/Sidebar.vue\",\"summary\":\"改为 computed 直接派生背景色\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5050,
+        "completion_tokens": 90,
+        "total_tokens": 5140
+      }
+    },
+    {
+      "id": "chatcmpl-mock-6",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_6",
+                "type": "function",
+                "function": {
+                  "name": "run_tests",
+                  "arguments": "{}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5700,
+        "completion_tokens": 90,
+        "total_tokens": 5790
+      }
+    },
+    {
+      "id": "chatcmpl-mock-7",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_7",
+                "type": "function",
+                "function": {
+                  "name": "attach_artifact",
+                  "arguments": "{\"kind\":\"video\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 6350,
+        "completion_tokens": 90,
+        "total_tokens": 6440
+      }
+    },
+    {
+      "id": "chatcmpl-mock-8",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_8",
+                "type": "function",
+                "function": {
+                  "name": "finish",
+                  "arguments": "{\"verdict\":\"bug\",\"summary\":\"已修复闪烁，附前后对比视频\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 7000,
+        "completion_tokens": 90,
+        "total_tokens": 7090
+      }
+    }
+  ]
+}

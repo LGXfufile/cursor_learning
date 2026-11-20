@@ -1,0 +1,11 @@
+{
+  "case_id": "bt-001",
+  "dataset": "bug-triage@v1",
+  "repro": "切换深色主题时 Sidebar 先渲染浅色背景再变深，约 120ms 闪烁",
+  "fix_file": "src/components/Sidebar.vue",
+  "files": {
+    "src/components/Sidebar.vue": "<script setup>\nconst bg = ref(readThemeOnMount())\nwatch(theme, () => nextTick(() => bg.value = theme.value))\n</script>",
+    "src/stores/theme.js": "export const theme = ref(localStorage.theme)",
+    "src/App.vue": "<template><Sidebar/><router-view/></template>"
+  }
+}

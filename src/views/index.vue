@@ -11,6 +11,7 @@
           开始学习
         </el-button>
         <el-button size="large" @click="showDocDialog">查看文档</el-button>
+        <el-button size="large" @click="router.push('/eval-lake')">评测湖 Demo</el-button>
       </div>
     </div>
 

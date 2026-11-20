@@ -1,0 +1,10 @@
+{
+  "case_id": "bt-005",
+  "dataset": "bug-triage@v1",
+  "repro": "关闭推送通知后，导航栏仍显示站内信未读红点",
+  "fix_file": null,
+  "files": {
+    "docs/spec/notifications.md": "推送开关只控制系统推送；站内未读红点始终展示，直到消息被阅读。",
+    "src/stores/notify.js": "export const unread = computed(() => inbox.value.filter(m => !m.read).length)"
+  }
+}

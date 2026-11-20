@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eval-lake.schema.json",
+  "title": "Agent Eval Lake records",
+  "$defs": {
+    "DatasetManifest": {
+      "type": "object",
+      "required": ["dataset", "version", "created_at", "case_count", "cases_sha256"],
+      "properties": {
+        "dataset": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "version": { "type": "string", "pattern": "^v[0-9]+$" },
+        "created_at": { "type": "string" },
+        "description": { "type": "string" },
+        "case_count": { "type": "integer", "minimum": 1 },
+        "cases_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "parent_version": { "type": "string" }
+      }
+    },
+    "Grader": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["rule", "judge", "human"] },
+        "check": {
+          "type": "string",
+          "enum": ["outcome_equals", "read_before_claim", "artifact_present", "max_tool_calls"]
+        },
+        "path": { "type": "string" },
+        "value_from": { "type": "string" },
+        "kinds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "max": { "type": "integer", "minimum": 0 },
+        "rubric": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "threshold": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "Case": {
+      "type": "object",
+      "required": ["case_id", "title", "input", "expected", "graders", "split", "tags"],
+      "properties": {
+        "case_id": { "type": "string", "pattern": "^[a-z]+-[0-9]{3}$" },
+        "title": { "type": "string" },
+        "input": {
+          "type": "object",
+          "required": ["prompt"],
+          "properties": { "prompt": { "type": "string" }, "context": { "type": "object" } }
+        },
+        "expected": { "type": "object" },
+        "graders": { "type": "array", "items": { "$ref": "#/$defs/Grader" }, "minItems": 1 },
+        "split": { "type": "string", "enum": ["dev", "holdout"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "source": { "type": "string", "enum": ["handwritten", "production_trace", "synthetic"] }
+      }
+    },
+    "TraceEvent": {
+      "type": "object",
+      "required": ["seq", "type"],
+      "properties": {
+        "seq": { "type": "integer", "minimum": 0 },
+        "type": {
+          "type": "string",
+          "enum": ["user_message", "thinking", "tool_call", "claim", "artifact", "assistant_message"]
+        },
+        "content": { "type": "string" },
+        "tool": { "type": "string" },
+        "args": { "type": "object" },
+        "result_summary": { "type": "string" },
+        "file": { "type": "string" },
+        "kind": { "type": "string" },
+        "uri": { "type": "string" }
+      }
+    },
+    "Trial": {
+      "type": "object",
+      "required": ["trial_id", "run_id", "case_id", "dataset", "variant", "attempt", "events", "outcome", "usage"],
+      "properties": {
+        "trial_id": { "type": "string" },
+        "run_id": { "type": "string" },
+        "case_id": { "type": "string" },
+        "dataset": { "type": "string", "pattern": "^[a-z0-9-]+@v[0-9]+$" },
+        "variant": {
+          "type": "object",
+          "required": ["name", "version", "model", "harness"],
+          "properties": {
+            "name": { "type": "string" },
+            "version": { "type": "string" },
+            "model": { "type": "string" },
+            "harness": { "type": "string" },
+            "git_sha": { "type": "string" }
+          }
+        },
+        "attempt": { "type": "integer", "minimum": 1 },
+        "events": { "type": "array", "items": { "$ref": "#/$defs/TraceEvent" }, "minItems": 1 },
+        "outcome": { "type": "object" },
+        "usage": {
+          "type": "object",
+          "required": ["input_tokens", "output_tokens", "duration_ms"],
+          "properties": {
+            "input_tokens": { "type": "integer", "minimum": 0 },
+            "output_tokens": { "type": "integer", "minimum": 0 },
+            "cost_usd": { "type": "number", "minimum": 0 },
+            "duration_ms": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "JudgeRecord": {
+      "type": "object",
+      "required": ["trial_id", "grader", "judge_model", "criteria", "rationale"],
+      "properties": {
+        "trial_id": { "type": "string" },
+        "grader": { "type": "string" },
+        "judge_model": { "type": "string" },
+        "criteria": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 1 }, "minItems": 1 },
+        "rationale": { "type": "string" }
+      }
+    },
+    "Annotation": {
+      "type": "object",
+      "required": ["trial_id", "annotator", "label", "created_at"],
+      "properties": {
+        "trial_id": { "type": "string" },
+        "annotator": { "type": "string" },
+        "label": { "type": "string", "enum": ["pass", "fail"] },
+        "failure_tags": { "type": "array", "items": { "type": "string" } },
+        "note": { "type": "string" },
+        "created_at": { "type": "string" }
+      }
+    },
+    "Score": {
+      "type": "object",
+      "required": ["score_id", "trial_id", "run_id", "case_id", "grader", "grader_type", "value", "passed"],
+      "properties": {
+        "score_id": { "type": "string" },
+        "trial_id": { "type": "string" },
+        "run_id": { "type": "string" },
+        "case_id": { "type": "string" },
+        "grader": { "type": "string" },
+        "grader_type": { "type": "string", "enum": ["rule", "judge", "human"] },
+        "value": { "type": "number", "minimum": 0, "maximum": 1 },
+        "passed": { "type": "boolean" },
+        "detail": { "type": "string" }
+      }
+    }
+  }
+}
