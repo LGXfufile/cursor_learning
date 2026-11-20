@@ -1,0 +1,12 @@
+{"trial_id":"2026-11-20-triage-v2/bt-001/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-001/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-002/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-002/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-003/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-003/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-004/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-004/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-005/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75],"rationale":"查阅规格后给出非 bug 结论"}
+{"trial_id":"2026-11-20-triage-v2/bt-005/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75],"rationale":"查阅规格后给出非 bug 结论"}
+{"trial_id":"2026-11-20-triage-v2/bt-006/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-20-triage-v2/bt-006/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}

@@ -1,0 +1,228 @@
+{
+  "provenance": "mock",
+  "model": "deepseek-chat",
+  "recorded_at": "2026-11-20T00:00:00Z",
+  "latency_ms": [
+    1400,
+    1797,
+    2194,
+    1691,
+    2088,
+    1585,
+    1982
+  ],
+  "responses": [
+    {
+      "id": "chatcmpl-mock-39",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_39",
+                "type": "function",
+                "function": {
+                  "name": "run_app",
+                  "arguments": "{}"
+                }
+              }
+            ],
+            "reasoning_content": "复现内存增长"
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 2450,
+        "completion_tokens": 210,
+        "total_tokens": 2660
+      }
+    },
+    {
+      "id": "chatcmpl-mock-40",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_40",
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "arguments": "{\"pattern\":\"setInterval\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 3100,
+        "completion_tokens": 90,
+        "total_tokens": 3190
+      }
+    },
+    {
+      "id": "chatcmpl-mock-41",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_41",
+                "type": "function",
+                "function": {
+                  "name": "read_file",
+                  "arguments": "{\"path\":\"src/composables/usePolling.js\"}"
+                }
+              }
+            ],
+            "reasoning_content": "onUnmounted 没有 clearInterval"
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 3750,
+        "completion_tokens": 210,
+        "total_tokens": 3960
+      }
+    },
+    {
+      "id": "chatcmpl-mock-42",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_42",
+                "type": "function",
+                "function": {
+                  "name": "report_root_cause",
+                  "arguments": "{\"file\":\"src/composables/usePolling.js\",\"reason\":\"定时器未清理\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 4400,
+        "completion_tokens": 90,
+        "total_tokens": 4490
+      }
+    },
+    {
+      "id": "chatcmpl-mock-43",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_43",
+                "type": "function",
+                "function": {
+                  "name": "apply_patch",
+                  "arguments": "{\"path\":\"src/composables/usePolling.js\",\"summary\":\"onUnmounted 时 clearInterval\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5050,
+        "completion_tokens": 90,
+        "total_tokens": 5140
+      }
+    },
+    {
+      "id": "chatcmpl-mock-44",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_44",
+                "type": "function",
+                "function": {
+                  "name": "run_tests",
+                  "arguments": "{}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5700,
+        "completion_tokens": 90,
+        "total_tokens": 5790
+      }
+    },
+    {
+      "id": "chatcmpl-mock-45",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_45",
+                "type": "function",
+                "function": {
+                  "name": "finish",
+                  "arguments": "{\"verdict\":\"bug\",\"summary\":\"已修复泄漏\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 6350,
+        "completion_tokens": 90,
+        "total_tokens": 6440
+      }
+    }
+  ]
+}

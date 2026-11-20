@@ -1,0 +1,6 @@
+{
+  "run_id": "2026-11-20-deepseek-super-agent",
+  "agent": "deepseek-super-agent",
+  "mode": "replay",
+  "provenance": "cassette"
+}

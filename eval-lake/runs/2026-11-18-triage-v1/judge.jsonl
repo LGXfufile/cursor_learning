@@ -1,0 +1,12 @@
+{"trial_id":"2026-11-18-triage-v1/bt-001/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[0.5,0.75,0.75,0.5],"rationale":"结论明确、测试通过"}
+{"trial_id":"2026-11-18-triage-v1/bt-001/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-18-triage-v1/bt-002/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-18-triage-v1/bt-002/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-18-triage-v1/bt-003/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[0.25,0.25,0.25,0.25],"rationale":"缺少复现和源码证据"}
+{"trial_id":"2026-11-18-triage-v1/bt-003/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[0.25,0.25,0.25,1],"rationale":"缺少复现和源码证据"}
+{"trial_id":"2026-11-18-triage-v1/bt-004/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-18-triage-v1/bt-004/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,1],"rationale":"复现与源码证据充分"}
+{"trial_id":"2026-11-18-triage-v1/bt-005/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[0.25,0,0.5],"rationale":"未核对规格就改了代码"}
+{"trial_id":"2026-11-18-triage-v1/bt-005/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75],"rationale":"查阅规格后给出非 bug 结论"}
+{"trial_id":"2026-11-18-triage-v1/bt-006/a1","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[0.25,0.25,0.25,0.25],"rationale":"缺少复现和源码证据"}
+{"trial_id":"2026-11-18-triage-v1/bt-006/a2","grader":"rubric_judge","judge_model":"judge-beta (different family)","criteria":[1,1,0.75,0.25],"rationale":"复现与源码证据充分"}

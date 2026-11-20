@@ -1,0 +1,11 @@
+{
+  "case_id": "bt-003",
+  "dataset": "bug-triage@v1",
+  "repro": "登录后约 1/5 概率白屏，控制台无报错，刷新恢复",
+  "fix_file": "src/router.js",
+  "files": {
+    "src/router.js": "router.beforeEach(async (to) => {\n  if (!user.loaded) loadUser() // not awaited\n  return user.value ? true : \"/login\"\n})",
+    "src/App.vue": "<template><router-view/></template>",
+    "src/stores/user.js": "export async function loadUser() { /* fetch /me */ }"
+  }
+}

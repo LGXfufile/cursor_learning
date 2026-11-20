@@ -1,0 +1,10 @@
+{
+  "case_id": "bt-004",
+  "dataset": "bug-triage@v1",
+  "repro": "第二页前 5 条与第一页末尾 5 条相同",
+  "fix_file": "src/api/list.js",
+  "files": {
+    "src/api/list.js": "export const fetchOrders = (page, size = 20) =>\n  http.get(\"/orders\", { params: { offset: page * size - 5, limit: size } })",
+    "src/views/Orders.vue": "<script setup>fetchOrders(page.value)</script>"
+  }
+}

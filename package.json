@@ -6,7 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "eval:seed": "node scripts/eval-lake/seed-sample.mjs",
+    "eval:cassettes": "node scripts/eval-lake/agents/make-mock-cassettes.mjs",
+    "eval:agent": "node scripts/eval-lake/run-agent.mjs",
+    "eval:run": "node scripts/eval-lake/run.mjs",
+    "eval:gate": "node scripts/eval-lake/run.mjs --gate",
+    "eval:replay": "node scripts/eval-lake/replay.mjs",
+    "eval:test": "node --test scripts/eval-lake/eval-lake.test.mjs scripts/eval-lake/deepseek-agent.test.mjs"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",

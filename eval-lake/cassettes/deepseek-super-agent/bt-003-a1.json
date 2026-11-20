@@ -1,0 +1,165 @@
+{
+  "provenance": "mock",
+  "model": "deepseek-chat",
+  "recorded_at": "2026-11-20T00:00:00Z",
+  "latency_ms": [
+    1400,
+    1797,
+    2194,
+    1691,
+    2088
+  ],
+  "responses": [
+    {
+      "id": "chatcmpl-mock-17",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_17",
+                "type": "function",
+                "function": {
+                  "name": "grep",
+                  "arguments": "{\"pattern\":\"router-view\"}"
+                }
+              }
+            ],
+            "reasoning_content": "白屏多半是根组件渲染问题"
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 2450,
+        "completion_tokens": 210,
+        "total_tokens": 2660
+      }
+    },
+    {
+      "id": "chatcmpl-mock-18",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_18",
+                "type": "function",
+                "function": {
+                  "name": "report_root_cause",
+                  "arguments": "{\"file\":\"src/App.vue\",\"reason\":\"router-view 未包 Suspense\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 3100,
+        "completion_tokens": 90,
+        "total_tokens": 3190
+      }
+    },
+    {
+      "id": "chatcmpl-mock-19",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_19",
+                "type": "function",
+                "function": {
+                  "name": "apply_patch",
+                  "arguments": "{\"path\":\"src/App.vue\",\"summary\":\"包一层 Suspense\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 3750,
+        "completion_tokens": 90,
+        "total_tokens": 3840
+      }
+    },
+    {
+      "id": "chatcmpl-mock-20",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_20",
+                "type": "function",
+                "function": {
+                  "name": "run_tests",
+                  "arguments": "{}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 4400,
+        "completion_tokens": 90,
+        "total_tokens": 4490
+      }
+    },
+    {
+      "id": "chatcmpl-mock-21",
+      "object": "chat.completion",
+      "model": "deepseek-chat",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "call_21",
+                "type": "function",
+                "function": {
+                  "name": "finish",
+                  "arguments": "{\"verdict\":\"bug\",\"summary\":\"已修复白屏\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5050,
+        "completion_tokens": 90,
+        "total_tokens": 5140
+      }
+    }
+  ]
+}

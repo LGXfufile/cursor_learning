@@ -1,0 +1,10 @@
+{
+  "case_id": "bt-002",
+  "dataset": "bug-triage@v1",
+  "repro": "导出 orders.csv 后用 Excel 打开，中文列显示为乱码",
+  "fix_file": "src/utils/exportCsv.js",
+  "files": {
+    "src/utils/exportCsv.js": "export function exportCsv(rows) {\n  const text = rows.map(r => r.join(\",\")).join(\"\\n\")\n  return new Blob([text], { type: \"text/csv\" })\n}",
+    "src/views/Orders.vue": "<script setup>import { exportCsv } from \"../utils/exportCsv\"</script>"
+  }
+}
